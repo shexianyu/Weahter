@@ -1,0 +1,10 @@
+<litepal>
+    <dbname value="weather"/>
+    <version value="1"/>
+    <list>
+        <mapping class="cn.edu.sxy.weather.db.Province"/>
+        <mapping class="cn.edu.sxy.weather.db.City"/>
+        <mapping class="cn.edu.sxy.weather.db.County"/>
+    </list>
+
+</litepal>
