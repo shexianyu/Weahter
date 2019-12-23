@@ -1,5 +1,6 @@
 package cn.edu.sxy.weather;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -25,6 +26,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 
 import cn.edu.sxy.weather.gson.Weather;
+import cn.edu.sxy.weather.service.AutoUpdateService;
 import cn.edu.sxy.weather.util.HttpUtil;
 import cn.edu.sxy.weather.util.Utility;
 import cn.edu.sxy.weather.gson.Forecast;
@@ -183,7 +185,6 @@ public class WeatherActivity extends AppCompatActivity {
      */
     private void showWeatherInfo(Weather weather) {
         String cityName = weather.basic.cityName;
-       /* String updateTime = weather.basic.update.updateTime.split(" ")[1];*/
         String updateTime = weather.basic.update.updateTime.split(" ")[1];
         String degree = weather.now.temperature + "°C";
         String weatherInfo = weather.now.more.info;
@@ -215,6 +216,9 @@ public class WeatherActivity extends AppCompatActivity {
         carWashText.setText(carWash);
         sportText.setText(sport);
         weatherLayout.setVisibility(View.VISIBLE);
+        //后台更新天气
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 
 }
